@@ -19,7 +19,7 @@ int main(void){
     
     //vstrlen
     int p;
-    p = vstrlen("ola");
+    p = v_strlen("ola");
     print_test("vstrlen");
     test(p);
 
