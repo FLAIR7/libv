@@ -52,8 +52,8 @@ int v_memcpm(const void *x, const void *y, size_t len){
 }
 
 /*
- *
- *
+ * deallocates memory previously
+ * allocated in memory
  *
  */
 
@@ -74,7 +74,7 @@ void v_free_ptr(void **p){
  *
  */
 
-int v_strlen(const char *str){
+int v_strlen(char *str){
     int i;
     i = 0;
     while(str[i])
@@ -89,14 +89,14 @@ int v_strlen(const char *str){
  */
 
 char *v_strrev(char *str){
-    char *x, *y;
+    char *p1, *p2;
 
     if(!str || !*str)
         return str;
-    for(x = str, y = str + v_strlen(str) - 1; y > x; ++x, --y){
-        *x ^= *y;
-        *y ^= *x;
-        *x ^= *y;
+    for(p1 = str, p2 = str + v_strlen(str) - 1; p2 > p1; ++p1, --p2){
+        *p1 ^= *p2;
+        *p2 ^= *p1;
+        *p1 ^= *p2;
     }
     return str;
 }
@@ -236,15 +236,15 @@ int is_prime(long long int n){
 ==============================================================*/
 
 /*
+ * pass a number inside '' and 
  * returns 0 if n is not a numberic digit
  * and 1 if it is
- *
  */
 
 int is_digit(int n){
     if(n < '0' || n > '9')
-        return 0;
-    return 1;
+        return (0);
+    return (1);
 }
 
 /*

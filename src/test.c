@@ -1,9 +1,10 @@
 #include "libv.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void test(int n, int *p){
-    if(n != 0 || p != NULL)
+void test(int n, int *p, char *str){
+    if(n != 0 || p != NULL || str != NULL)
         fprintf(stdout, "Test success\n");
     else 
         fprintf(stdout, "test failed!\n");
@@ -25,7 +26,7 @@ int main(void){
     p = v_malloc(5);
     p2 = &p;
     print_test("v_malloc");
-    test(0, p);
+    test(0, p, NULL);
     
     //v_free_ptr
     v_free_ptr(p2);
@@ -36,21 +37,28 @@ int main(void){
                                                 STRING
 ============================================================*/   
     int a; 
+    //char *str = strdup("ola");
+    char str[] = "ola";
 
     //v_strlen
     a = v_strlen("ola");
-    print_test("vstrlen");
-    test(a, NULL);
+    print_test("v_strlen / LENGTH STRING");
+    test(a, NULL, NULL);
+    
+    //v_strrev
+    v_strrev(str); //alo
+    print_test("v_strrev / REVERSE STRING");
+    test(0, NULL, str);
 
     //to_lower 
     a = to_lower('A');
-    print_test("to_lower");
-    test(a, NULL);
+    print_test("to_lower / TO LOWER");
+    test(a, NULL, NULL);
     
     //to_upper
     a = to_upper('a');
-    print_test("to_upper");
-    test(a, NULL);
+    print_test("to_upper / TO UPPER");
+    test(a, NULL, NULL);
 
 /*==========================================================
                                                 MATH
@@ -61,22 +69,22 @@ int main(void){
     //gcd
     b = gcd(12, 9);
     print_test("gcd / GREATEST COMMON DIVISOR");
-    test(b, NULL);
+    test(b, NULL, NULL);
     
     // lcm
     b = lcm(12, 9);
     print_test("lcm / LEAST COMMON MULTIPLE");
-    test(b, NULL);
+    test(b, NULL, NULL);
     
     //factorial
     b = factorial(5);
     print_test("factorial / FACTORIAL");
-    test(b, NULL);
+    test(b, NULL, NULL);
 
     //v_sqrt
     b1 = v_sqrt(2);
     print_test("v_sqrt / SQUARE ROOT"); 
-    test((int)b1, NULL);
+    test((int)b1, NULL, NULL);
     
     //v_rsqrt
     b1 = v_rsqrt(1500.5F);
@@ -86,12 +94,12 @@ int main(void){
     //is_prime
     b = is_prime(2);
     print_test("is_prime / IS PRIME");
-    test(b, NULL);
+    test(b, NULL, NULL);
     
     //is_digit
-    b = is_digit(3);
+    b = is_digit('3');
     print_test("is_digit / IS DIGIT");
-    test(b, NULL);
+    test(b, NULL, NULL);
 
     return 0;
 }
