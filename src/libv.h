@@ -23,6 +23,7 @@ int gcd(int a, int b);
 int lcm(int a, int b);
 int factorial(int n);
 double v_sqrt(double n);
+float v_rsqrt(float n);
 int is_prime(long long int n);
 
 /* Util */

@@ -1,8 +1,8 @@
 #include "libv.h"
 
-/*==========================================================
- MEMORY
-============================================================*/
+/*============================================================
+                                                  MEMORY
+==============================================================*/
 
 /*
  * allocates memory and returns a void pointer
@@ -11,13 +11,11 @@
  */
 
 void *v_malloc(unsigned int len){
-
     int *ptr;
     ptr = malloc(len);
     if(ptr == NULL)
         return NULL;
     return ptr;
-
 }
 
 /*
@@ -27,7 +25,6 @@ void *v_malloc(unsigned int len){
  */
 
 void *v_memcpy(void *dest, const void *src, size_t len){
-
     void *ptr;
     if(dest == NULL && src == NULL)
         return NULL;
@@ -35,7 +32,6 @@ void *v_memcpy(void *dest, const void *src, size_t len){
     while(len-- > 0)
        *(char *)dest++ = *(char *)src++;
     return ptr;
-
 }
 
 /* 
@@ -45,7 +41,6 @@ void *v_memcpy(void *dest, const void *src, size_t len){
  */
 
 int v_memcpm(const void *x, const void *y, size_t len){
-    
     while(len-- > 0) {
         if(*(unsigned char *)x != *(unsigned char *)y)
             return (*(unsigned char *) x - *(unsigned char *)y);
@@ -54,7 +49,6 @@ int v_memcpm(const void *x, const void *y, size_t len){
     }
 
     return (0);
-
 }
 
 /*
@@ -64,17 +58,15 @@ int v_memcpm(const void *x, const void *y, size_t len){
  */
 
 void v_free_ptr(void **p){
-    
     if(*p){
         free(*p);
         *p = NULL;
     }
-
 }
 
-/*=============================================================
- STRINGS
-===============================================================*/
+/*============================================================
+                                                  STRINGS
+==============================================================*/
 
 /*
  * gives the length of a string
@@ -83,13 +75,11 @@ void v_free_ptr(void **p){
  */
 
 int v_strlen(const char *str){
-    
     int i;
     i = 0;
     while(str[i])
         i++;
     return i;
-
 }
 
 /*
@@ -99,7 +89,6 @@ int v_strlen(const char *str){
  */
 
 char *v_strrev(char *str){
-    
     char *x, *y;
 
     if(!str || !*str)
@@ -110,7 +99,6 @@ char *v_strrev(char *str){
         *x ^= *y;
     }
     return str;
-
 }
 
 /*
@@ -120,11 +108,9 @@ char *v_strrev(char *str){
  */
 
 int to_lower(int c){
-    
     if(c >= 'A' && c <= 'Z')
         return (c + 32);
     return c;
-
 }
 
 /*
@@ -134,15 +120,13 @@ int to_lower(int c){
  */ 
 
 int to_upper(int c){
-
     if(c >= 'a' && c <= 'z')
         return (c - 32);
     return c;
-
 }
 
 /*============================================================
- MATH
+                                                  MATH
 ==============================================================*/
 
 /*
@@ -152,12 +136,10 @@ int to_upper(int c){
  */
 
 int gcd(int a, int b){
-    
     if(!b)
         return a;
     else 
         return gcd(b, a%b);
-
 }
 
 /* 
@@ -167,7 +149,6 @@ int gcd(int a, int b){
  */
 
 int lcm(int a, int b){
-    
     int x;
     if(!b)
         return a;
@@ -175,7 +156,6 @@ int lcm(int a, int b){
         x = (a * b) / (gcd(a, b));
     
     return x;
-
 }
 
 /*
@@ -185,12 +165,10 @@ int lcm(int a, int b){
  */
 
 int factorial(int n){
-
     if(n <= 1)
         return 1;
     else 
         return n * factorial(n - 1);
-
 }
 
 /* 
@@ -200,14 +178,33 @@ int factorial(int n){
  */
 
 double v_sqrt(double n){
-
     double error = n * 10e-8;
     double s = n;
     while((s - n / s) > error) {
         s = (s + n / s) / 2;
     }
     return s;
+}
 
+/*
+ * return the fsqrt, fast inverse sqrt
+ * can be used to normalize a vector
+ * this function was used in quake 
+ */
+
+float v_rsqrt(float n){
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = n * 0.5F;
+    y = n;
+    i = * (long *) &y;
+    i = 0x5f3759df - (i >> 1);
+    y = * (float *) &i;
+    y = y * (threehalfs - ( x2 * y * y));
+
+    return y;
 }
 
 /*
@@ -217,7 +214,6 @@ double v_sqrt(double n){
  */
 
 int is_prime(long long int n){
-
     register int i;
     int root = sqrt(n);
 
@@ -233,12 +229,11 @@ int is_prime(long long int n){
     }
 
     return 1;
-
 }
 
-/*=======================================================
- UTILS
-=========================================================*/
+/*============================================================
+                                                  UTILS
+==============================================================*/
 
 /*
  * returns 0 if n is not a numberic digit
@@ -247,11 +242,9 @@ int is_prime(long long int n){
  */
 
 int is_digit(int n){
-
     if(n < '0' || n > '9')
         return 0;
     return 1;
-
 }
 
 /*
@@ -261,11 +254,9 @@ int is_digit(int n){
  */
 
 int is_ascii(int n){
-    
     if(0 > n || 127 > n)
         return 0;
     return n;
-
 }
 
 /*
@@ -279,7 +270,7 @@ void midpoint_algorithm(int x_centre, int y_centre, int radius){
     int y = 0;
     int dx = 1;
     int dy = 1;
-    int err = dx - (radius << 1);
+    int err = dx - radius;
 
     while(x >= y){
         printf("(%d, %d)", x_centre + x, y_centre + y);
@@ -300,7 +291,7 @@ void midpoint_algorithm(int x_centre, int y_centre, int radius){
         if(err > 0){
             x--;
             dx += 2;
-            err += dx - (radius << 1);
+            err += (dx - radius);
         }
     }
 }

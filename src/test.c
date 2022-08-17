@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 
-void test(int n){
-    if(n != 0)
+void test(int n, int *p){
+    if(n != 0 || p != NULL)
         fprintf(stdout, "Test success\n");
     else 
         fprintf(stdout, "test failed!\n");
@@ -12,41 +12,67 @@ void test(int n){
 
 void print_test(const char *test_name){
     fprintf(stdout, "\n%s test\n", test_name);
-};
+}
 
 
 int main(void){
+ 
+/*==========================================================
+                                                MEMORY
+============================================================*/
+    void *p;
+    void **p2;
     
-    //vstrlen
-    int p;
-    p = v_strlen("ola");
+    //v_malloc
+    p = v_malloc(5);
+    p2 = &p;
+    print_test("v_malloc");
+    test(0, p);
+    
+    //v_free_ptr
+    v_free_ptr(p2);
+    print_test("v_free_ptr");
+
+
+
+/*==========================================================
+                                                STRING
+============================================================*/   
+    int a; 
+
+    //v_strlen
+    a = v_strlen("ola");
     print_test("vstrlen");
-    test(p);
+    test(a, NULL);
 
     //to_lower 
-    p = to_lower('A');
+    a = to_lower('A');
     print_test("to_lower");
-    test(p);
+    test(a, NULL);
     
     //to_upper
-    p = to_upper('a');
+    a = to_upper('a');
     print_test("to_upper");
-    test(p);
+    test(a, NULL);
 
+/*==========================================================
+                                                MATH
+============================================================*/
+    int b; 
 
     //gcd
-    p = gcd(12, 9);
+    b = gcd(12, 9);
     print_test("gdc");
-    test(p);
+    test(b, NULL);
     
     // lcm
-    p = lcm(12, 9);
+    b = lcm(12, 9);
     print_test("lcm");
-    test(p);
+    test(b, NULL);
     
-    p = factorial(5);
+    b = factorial(5);
     print_test("factorial");
-    test(p);
+    test(b, NULL);
 
     return 0;
 }
