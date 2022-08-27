@@ -74,7 +74,7 @@ void v_free_ptr(void **p){
  *
  */
 
-int v_strlen(char *str){
+int v_strlen(char str[]){
     int i;
     i = 0;
     while(str[i])
@@ -88,7 +88,7 @@ int v_strlen(char *str){
  * the same str
  */
 
-char *v_strrev(char *str){
+char *v_strrev(char str[]){
     char *p1, *p2;
 
     if(!str || !*str)
@@ -123,6 +123,21 @@ int to_upper(int c){
     if(c >= 'a' && c <= 'z')
         return (c - 32);
     return c;
+}
+
+/*
+ * print on the screen
+ * returns 0 if has no
+ * character
+ */
+
+int v_print(char str[]){
+    int i;
+    i = 0;
+    while(str[i] != '\0')
+        putchar(str[i++]);
+
+    return i;
 }
 
 /*============================================================
@@ -165,10 +180,9 @@ int lcm(int a, int b){
  */
 
 int factorial(int n){
-    if(n <= 1)
-        return 1;
-    else 
+    if(n > 0)
         return n * factorial(n - 1);
+    return 1;
 }
 
 /* 
@@ -215,7 +229,7 @@ float v_rsqrt(float n){
 
 int is_prime(long long int n){
     register int i;
-    int root = sqrt(n);
+    int root = v_sqrt(n);
 
     if(n == 2)
         return 1;

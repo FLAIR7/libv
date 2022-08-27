@@ -7,11 +7,11 @@ void test(int n, int *p, char *str){
     if(n != 0 || p != NULL || str != NULL)
         fprintf(stdout, "Test success\n");
     else 
-        fprintf(stdout, "test failed!\n");
+        fprintf(stdout, "Test failed!\n");
 }
 
 void print_test(const char *test_name){
-    fprintf(stdout, "\n%s test\n", test_name);
+    fprintf(stdout, "\n%s Test\n", test_name);
 }
 
 int main(void){
@@ -39,6 +39,7 @@ int main(void){
     int a; 
     //char *str = strdup("ola");
     char str[] = "ola";
+    char *s;
 
     //v_strlen
     a = v_strlen("ola");
@@ -46,9 +47,9 @@ int main(void){
     test(a, NULL, NULL);
     
     //v_strrev
-    v_strrev(str); //alo
+    s = v_strrev(str); //alo
     print_test("v_strrev / REVERSE STRING");
-    test(0, NULL, str);
+    test(0, NULL, s);
 
     //to_lower 
     a = to_lower('A');
@@ -59,6 +60,10 @@ int main(void){
     a = to_upper('a');
     print_test("to_upper / TO UPPER");
     test(a, NULL, NULL);
+
+    //v_print
+    print_test("print / PRINT");
+    printf("CANNOT MAKE THIS TEST, BECAUSE IT HAS SIDE EFFECT\n");
 
 /*==========================================================
                                                 MATH

@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 /* Memory */
 void *v_malloc(unsigned int len);
@@ -13,10 +12,11 @@ int v_memcmp(const void *x, const void *y, size_t len);
 void v_free_ptr(void **p);
 
 /* Strings */
-int v_strlen(char *str);
-char *v_strrev(char *str);
+int v_strlen(char str[]);
+char *v_strrev(char str[]);
 int to_lower(int c);
 int to_upper(int c);
+int v_print(char str[]);
 
 /* Math */
 int gcd(int a, int b);
