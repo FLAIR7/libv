@@ -5,9 +5,8 @@
 ==============================================================*/
 
 /*
- * allocates memory and returns a void pointer
+ * Allocates memory and returns a void pointer
  * returns NULL if cannot allocate memory
- *
  */
 
 void *v_malloc(unsigned int len){
@@ -19,7 +18,7 @@ void *v_malloc(unsigned int len){
 }
 
 /*
- * copy the values of num bytes from the location pointed
+ * Copy the values of num bytes from the location pointed
  * to by source directly to the memory - 
  * returns NULL if both have none content
  */
@@ -35,7 +34,7 @@ void *v_memcpy(void *dest, const void *src, size_t len){
 }
 
 /* 
- * returns the difference between    
+ * Returns the difference between    
  * the characters in ASCII table, 0 if 
  * there's no difference
  */
@@ -52,9 +51,8 @@ int v_memcpm(const void *x, const void *y, size_t len){
 }
 
 /*
- * deallocates memory previously
+ * Deallocates memory previously
  * allocated in memory
- *
  */
 
 void v_free_ptr(void **p){
@@ -69,7 +67,7 @@ void v_free_ptr(void **p){
 ==============================================================*/
 
 /*
- * gives the length of a string
+ * Gives the length of a string
  * returns 0 if has no content
  *
  */
@@ -83,7 +81,7 @@ int v_strlen(char str[]){
 }
 
 /*
- * returns str reversed and if 
+ * Returns str reversed and if 
  * str is not defined, returns
  * the same str
  */
@@ -102,9 +100,8 @@ char *v_strrev(char str[]){
 }
 
 /*
- * if c is upercase, returns its lower
+ * If c is uppercase, returns its lower
  * equivalent
- *
  */
 
 int to_lower(int c){
@@ -114,9 +111,8 @@ int to_lower(int c){
 }
 
 /*
- * if c is lowercase, returns its upper
+ * If c is lowercase, returns its upper
  * equivalent
- *
  */ 
 
 int to_upper(int c){
@@ -126,9 +122,8 @@ int to_upper(int c){
 }
 
 /*
- * print on the screen
- * returns 0 if has no
- * character
+ * Prints on the screen
+ * returns 0 if has no character
  */
 
 int v_print(char str[]){
@@ -145,9 +140,8 @@ int v_print(char str[]){
 ==============================================================*/
 
 /*
- * returns the Greatest commom divisor
+ * Returns the Greatest commom divisor
  * (gcd). if b is not defined, returns a
- *
  */
 
 int gcd(int a, int b){
@@ -158,9 +152,8 @@ int gcd(int a, int b){
 }
 
 /* 
- * returns the Least commom multiple
+ * Returns the Least commom multiple
  * and if b is not defined, returns a
- *
  */
 
 int lcm(int a, int b){
@@ -174,9 +167,8 @@ int lcm(int a, int b){
 }
 
 /*
- * returns the factorial of a number
+ * Returns the factorial of a number
  * and if n is 0 or negative, returns 1
- *
  */
 
 int factorial(int n){
@@ -186,9 +178,8 @@ int factorial(int n){
 }
 
 /* 
- * return the square root of a number.
+ * Return the square root of a number.
  * this functions use the babylonian method
- *
  */
 
 double v_sqrt(double n){
@@ -201,7 +192,7 @@ double v_sqrt(double n){
 }
 
 /*
- * return the fsqrt, fast inverse sqrt
+ * Return the fsqrt, Fast Inverse Sqrt
  * can be used to normalize a vector
  * this function was used in quake 
  */
@@ -222,9 +213,8 @@ float v_rsqrt(float n){
 }
 
 /*
- * test if the number is prime
- * returns 1 if it is and 0 if
- * is not
+ * Returns 0 if is not prime
+ * and 1 if is it
  */
 
 int is_prime(long long int n){
@@ -250,9 +240,8 @@ int is_prime(long long int n){
 ==============================================================*/
 
 /*
- * pass a number inside '' and 
- * returns 0 if n is not a numberic digit
- * and 1 if it is
+ * Returns 0 if is not a numeric digit 
+ * and 1 if it is 
  */
 
 int is_digit(int n){
@@ -262,9 +251,8 @@ int is_digit(int n){
 }
 
 /*
- * returns 0 if is not in ascii
+ * Returns 0 if is not in ascii
  * and 1 if it is
- *
  */
 
 int is_ascii(int n){
@@ -274,9 +262,31 @@ int is_ascii(int n){
 }
 
 /*
- * and algorithm used to determine the points need for rasterizing
+ * Returns 0 if is not alphabethic
+ * and 1 if it is
+ */
+
+int is_alpha(int n){
+    if(('A' > n || n > 'Z') && (n < 'a' || n > 'z'))
+        return 0;
+    return 1;
+}
+
+/*
+ * Returns 0 if is not alphanumeric
+ * and 1 if it is
+ */ 
+
+int is_alnum(int n){
+    if((!is_digit(n)) && (!is_alpha(n)))
+        return 0;
+    return 1;
+}
+
+/*
+ * An algorithm used to determine the points need for rasterizing
  * a circle. this algorithm is perfect to draw circle in some libraries
- * SDL, Opengl
+ * like SDL, Opengl, etc...
  */
 
 void midpoint_algorithm(int x_centre, int y_centre, int radius){
