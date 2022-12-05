@@ -39,6 +39,9 @@ int is_alpha(int n);
 int is_alnum(int n);
 void midpoint_algorithm(int x_centre, int y_centre, int radius);
 
+/* File*/
+int write_file(char *file, char *str);
+
 /* Colors */
 #define WHITE "\033[01;37m"
 #define BLACK "\033[22;30m"
